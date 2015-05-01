@@ -48,8 +48,12 @@ Puppet::Type.type(:node_group).provide(:puppetclassify) do
     }
   end
 
+  def self.get_groups
+    puppetclassify.groups.get_groups
+  end
+
   def self.instances
-    $ngs = puppetclassify.groups.get_groups
+    $ngs = get_groups
     $ngs.collect do |group|
       ngs_hash = {}
       friendly_name.each do |property,friendly|
